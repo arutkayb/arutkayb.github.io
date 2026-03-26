@@ -8,7 +8,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     name: 'Intimassy',
-    description: 'A relationship app that helps couples stay connected through shared rituals and meaningful moments.',
+    description: 'An intimate life-tracking app that helps users keep a dating diary and couples stay connected through shared rituals and meaningful moments.',
     techStack: 'Native Android and Flutter for iOS, with Firebase on the backend.',
     url: 'https://centertable.club/',
   },
