@@ -1,0 +1,38 @@
+:root {
+  /* Background layers */
+  --color-bg-primary: #0f0f13;
+  --color-bg-secondary: #1a1a24;
+  --color-bg-tertiary: #24243a;
+
+  /* Text */
+  --color-text-primary: #e8e8ed;
+  --color-text-secondary: #9898a8;
+  --color-text-muted: #5c5c6e;
+
+  /* Accent - teal */
+  --color-accent: #4ecdc4;
+  --color-accent-hover: #6ee4dc;
+
+  /* Source badges */
+  --color-medium: #00ab6c;
+  --color-linkedin: #0a66c2;
+
+  /* Semantic */
+  --color-border: #2a2a3a;
+  --color-shadow: rgba(0, 0, 0, 0.3);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 2rem;
+  --space-xl: 4rem;
+
+  /* Layout */
+  --max-width: 900px;
+  --border-radius: 12px;
+
+  /* Fonts */
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}

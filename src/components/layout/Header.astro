@@ -1,0 +1,39 @@
+---
+import Navigation from './Navigation.astro';
+---
+
+<header class="header">
+  <div class="header-inner container">
+    <a href="/" class="site-name">It's Rutkay</a>
+    <Navigation />
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .site-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .site-name:hover {
+    color: var(--color-accent);
+  }
+</style>

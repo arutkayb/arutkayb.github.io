@@ -1,0 +1,38 @@
+---
+import ProjectCard from './ProjectCard.astro';
+import { projects } from '../../data/projects';
+---
+
+<section class="projects section">
+  <h2 class="section-title">Alive Projects</h2>
+  <div class="projects-grid">
+    {projects.map((project) => (
+      <ProjectCard
+        name={project.name}
+        description={project.description}
+        techStack={project.techStack}
+        url={project.url}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text-primary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 600px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

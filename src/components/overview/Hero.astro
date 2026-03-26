@@ -1,0 +1,137 @@
+---
+import { social } from '../../data/social';
+---
+
+<section class="hero">
+  <video autoplay loop muted playsinline class="hero-video">
+    <source src="/images/video_to_loop.mov" type="video/quicktime" />
+    <source src="/images/video_to_loop.mov" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="bio-tagline">Coding mobile apps, writing blog posts, getting excited about AI</p>
+    <p class="bio-location">Germany</p>
+    <p class="bio-description">
+      Indie developer building mobile apps with Flutter and experimenting with AI-powered workflows.
+      I write about what I learn and build tools that make development more fun.
+    </p>
+    <div class="bio-links">
+      <a href={social.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={social.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── Mobile: full-width cover, fixed viewport height ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    height: 90vh;
+    width: calc(100% + 2 * var(--space-md));
+    margin-top: var(--space-lg);
+    margin-left: calc(-1 * var(--space-md));
+    margin-right: calc(-1 * var(--space-md));
+    margin-bottom: var(--space-xl);
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 15, 19, 0.2) 0%,
+      rgba(15, 15, 19, 0.55) 50%,
+      rgba(15, 15, 19, 0.88) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg) calc(var(--space-xl) + var(--space-lg));
+  }
+
+  .bio-tagline {
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  }
+
+  .bio-location {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.9rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .bio-description {
+    max-width: 520px;
+    margin: 0 auto var(--space-lg);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+  }
+
+  .bio-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-lg);
+  }
+
+  .bio-links a {
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-accent);
+  }
+
+  .bio-links a:hover {
+    color: var(--color-accent-hover);
+  }
+
+  /* ── Desktop: capped width, natural video height (no cropping) ── */
+  @media (min-width: 769px) {
+    .hero {
+      height: auto;
+      max-width: 560px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: var(--border-radius);
+    }
+
+    .hero-video {
+      position: relative;
+      width: 100%;
+      height: auto;
+      object-fit: unset;
+    }
+
+    .bio-tagline {
+      font-size: 1.5rem;
+    }
+
+    .bio-description {
+      font-size: 1.05rem;
+    }
+  }
+</style>

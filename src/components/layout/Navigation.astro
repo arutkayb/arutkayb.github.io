@@ -1,0 +1,45 @@
+---
+const pathname = Astro.url.pathname;
+
+const tabs = [
+  { label: 'Overview', href: '/' },
+  { label: 'Blog', href: '/feed/' },
+  { label: 'Diary', href: '/diary/' },
+];
+---
+
+<nav class="nav">
+  {tabs.map((tab) => (
+    <a
+      href={tab.href}
+      class:list={['nav-tab', { active: pathname === tab.href || (tab.href !== '/' && pathname.startsWith(tab.href)) }]}
+    >
+      {tab.label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .nav {
+    display: flex;
+    gap: var(--space-lg);
+  }
+
+  .nav-tab {
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: var(--space-sm) 0;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .nav-tab:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-tab.active {
+    color: var(--color-accent);
+    border-bottom-color: var(--color-accent);
+  }
+</style>

@@ -1,0 +1,30 @@
+<div class="hero-media">
+  <video autoplay loop muted playsinline>
+    <source src="/images/video_to_loop.mov" type="video/quicktime" />
+    <source src="/images/video_to_loop.mov" type="video/mp4" />
+  </video>
+</div>
+
+<style>
+  .hero-media {
+    display: flex;
+    justify-content: center;
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+
+  .hero-media video {
+    max-width: 100%;
+    width: 480px;
+    border-radius: var(--border-radius);
+  }
+
+  @media (max-width: 768px) {
+    .hero-media {
+      padding: var(--space-lg) 0 var(--space-md);
+    }
+
+    .hero-media video {
+      width: 100%;
+    }
+  }
+</style>

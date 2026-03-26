@@ -1,0 +1,53 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  techStack: string;
+  url: string;
+}
+
+const { name, description, techStack, url } = Astro.props;
+---
+
+<a href={url} target="_blank" rel="noopener noreferrer" class="project-card">
+  <h3 class="project-name">{name}</h3>
+  <p class="project-description">{description}</p>
+  <p class="project-tech">{techStack}</p>
+</a>
+
+<style>
+  .project-card {
+    display: block;
+    padding: var(--space-lg);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    color: inherit;
+  }
+
+  .project-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+  }
+
+  .project-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text-primary);
+  }
+
+  .project-description {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+    line-height: 1.5;
+  }
+
+  .project-tech {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+</style>

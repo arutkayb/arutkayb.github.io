@@ -1,0 +1,124 @@
+---
+interface Props {
+  title: string;
+  excerpt: string;
+  url: string;
+  date: Date;
+  imageUrl?: string;
+}
+
+const { title, excerpt, url, date, imageUrl } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={['feed-card', { 'has-image': !!imageUrl }]}
+>
+  <div class="feed-header">
+    <span class="feed-date">{formattedDate}</span>
+  </div>
+  {imageUrl && <img src={imageUrl} alt="" class="feed-image" loading="lazy" />}
+  <h3 class="feed-title">{title}</h3>
+  <p class="feed-excerpt">{excerpt}</p>
+</a>
+
+<style>
+  /* ── Base (mobile-first): column layout ── */
+  .feed-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    color: inherit;
+  }
+
+  .feed-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+  }
+
+  .feed-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .feed-image {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: calc(var(--border-radius) - 2px);
+    flex-shrink: 0;
+  }
+
+  .feed-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+  }
+
+  .feed-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-line;
+  }
+
+  .feed-date {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Desktop: header full-width on top, image left of title+excerpt ── */
+  @media (min-width: 769px) {
+    .feed-card.has-image {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      grid-template-rows: auto auto 1fr;
+      column-gap: var(--space-md);
+      row-gap: var(--space-xs);
+    }
+
+    .feed-card.has-image .feed-header {
+      grid-column: 1 / -1;
+      grid-row: 1;
+    }
+
+    .feed-card.has-image .feed-image {
+      grid-column: 1;
+      grid-row: 2 / 4;
+      width: 140px;
+      height: 100px;
+      align-self: center;
+    }
+
+    .feed-card.has-image .feed-title {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: start;
+    }
+
+    .feed-card.has-image .feed-excerpt {
+      grid-column: 2;
+      grid-row: 3;
+      align-self: start;
+    }
+  }
+</style>

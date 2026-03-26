@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DiaryCard from '../../components/diary/DiaryCard.astro';
+import { getCollection } from 'astro:content';
+
+const entries = await getCollection('diary');
+const sorted = entries.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+---
+
+<BaseLayout title="Diary - Rutkay" description="Daily reflections and learnings">
+  <section class="diary-page section">
+    <h1 class="page-title">Diary</h1>
+    <p class="page-description">Daily reflections on what I build, learn, and think about</p>
+
+    {sorted.length > 0 ? (
+      <div class="diary-list">
+        {sorted.map((entry) => (
+          <DiaryCard
+            id={entry.id}
+            date={entry.data.date}
+            stats={entry.data.stats}
+            overview={entry.data.overview}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>No diary entries yet. Check back soon!</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+
+  .diary-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--color-text-muted);
+  }
+</style>

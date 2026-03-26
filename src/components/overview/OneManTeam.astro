@@ -1,0 +1,64 @@
+---
+import TeamMember from './TeamMember.astro';
+import { teamMembers } from '../../data/team';
+---
+
+<section class="team section">
+  <h2 class="team-title">MEET THE DREAM TEAM</h2>
+  <p class="team-subtitle">Powered by caffeine, delusion, and an unreasonable number of terminal tabs</p>
+  <div class="team-grid">
+    {teamMembers.map((member) => (
+      <TeamMember
+        name={member.name}
+        role={member.role}
+        tagline={member.tagline}
+        imageSrc={member.imageSrc}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .team {
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+  }
+
+  .team-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    margin-bottom: var(--space-sm);
+  }
+
+  .team-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin-bottom: var(--space-xl);
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
+  }
+
+  @media (max-width: 768px) {
+    .team {
+      padding: var(--space-lg) var(--space-md);
+    }
+
+    .team-title {
+      font-size: 1.4rem;
+    }
+
+    .team-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+  }
+</style>

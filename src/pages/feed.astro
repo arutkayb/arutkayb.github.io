@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeedCard from '../components/feed/FeedCard.astro';
+import { getAllFeedItems } from '../lib/feed';
+
+const feedItems = await getAllFeedItems();
+---
+
+<BaseLayout title="Blog - Rutkay" description="Latest posts from Medium">
+  <section class="feed-page section">
+    <h1 class="page-title">Blog</h1>
+    <p class="page-description">Latest posts from Medium</p>
+
+    {feedItems.length > 0 ? (
+      <div class="feed-list">
+        {feedItems.map((item) => (
+          <FeedCard
+            title={item.title}
+            excerpt={item.excerpt}
+            url={item.url}
+            date={item.date}
+            imageUrl={item.imageUrl}
+          />
+        ))}
+      </div>
+    ) : (
+      <div class="empty-state">
+        <p>No posts yet. Check back soon!</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
+  .page-description {
+    text-align: center;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+
+  .feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: var(--space-xl);
+    color: var(--color-text-muted);
+  }
+</style>
