@@ -4,9 +4,9 @@ on:
   push:
     branches: [master]
   workflow_dispatch:
-  # Rebuild daily at 12:00 UTC to pick up new Medium posts
+  # Rebuild weekly on Monday at 12:00 UTC to pick up new Medium posts
   schedule:
-    - cron: '0 12 * * *'
+    - cron: '0 12 * * 1'
 
 permissions:
   contents: read
