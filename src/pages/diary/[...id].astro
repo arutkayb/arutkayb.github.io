@@ -1,6 +1,6 @@
 ---
-import DiaryLayout from '../../layouts/DiaryLayout.astro';
-import { getCollection, render } from 'astro:content';
+// Diary section temporarily disabled — redirect to home
+import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('diary');
@@ -10,10 +10,5 @@ export async function getStaticPaths() {
   }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+return Astro.redirect('/');
 ---
-
-<DiaryLayout title={entry.data.title} date={entry.data.date} stats={entry.data.stats}>
-  <Content />
-</DiaryLayout>

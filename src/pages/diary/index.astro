@@ -1,12 +1,6 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import DiaryCard from '../../components/diary/DiaryCard.astro';
-import { getCollection } from 'astro:content';
-
-const entries = await getCollection('diary');
-const sorted = entries.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+// Diary section temporarily disabled — redirect to home
+return Astro.redirect('/');
 ---
 
 <BaseLayout title="Diary - Rutkay" description="Daily reflections and learnings">
